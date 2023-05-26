@@ -11,7 +11,9 @@ task :compile do
   FileList.new('./src/*.html.haml').each do |filename|
     if filename =~ /([^\/]+)\.haml$/
       File.open($1, 'w') do |f|
-        f.write Haml::Engine.new(File.read(filename)).render
+        file_content = File.read(filename)
+        puts file_content
+        f.write Haml::Engine.new(file_content).render
       end
     end
   end
